@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular}" />
-    <includedPredefinedLibrary name="ECMAScript 6" />
-    <includedPredefinedLibrary name="Node.js Core" />
-  </component>
   <component name="JsBowerSettings">
     <exe-path />
     <config-path />
-  </component>
-  <component name="ProjectDictionaryState">
-    <dictionary name="liliwa" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
