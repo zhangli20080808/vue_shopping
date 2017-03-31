@@ -3,7 +3,8 @@ new Vue({
     data: {
         //使用resource来调用我们的方法
         totalMoney:0,
-        productList:[]
+        productList:[],
+        selectAll:false
     },
     //过滤器
     filters: {
@@ -34,7 +35,29 @@ new Vue({
                     product.productQuentity =1;
                 }
             }
+        },
+        selectProduct:function (item) {
+        //    我们这里没有checked 这个字段 所以我们要使用set 去设置
+            if(typeof item.checked == 'undefined'){
+                Vue.set(item,'checked',true);
+                // this.$set(item,'checked',true)
+            }else {
+                item.checked =!item.checked
+            }
+        },
+        checkAll:function (flag) {
+            this.selectAll= flag;
+            var _this = this;
+            this.productList.forEach(function (item,index) {
+                if(typeof item.checked == 'undefined'){
+                    Vue.set(item,'checked', _this.selectAll);
+                    // this.$set(item,'checked',true)
+                }else {
+                    item.checked =_this.selectAll;
+                }
+            })
         }
+
     }
 });
 
