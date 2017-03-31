@@ -24,13 +24,23 @@ new Vue({
                 this.productList = resp.body.result.list;
                 this.totalMoney = resp.body.totalMoney;
             })
+        },
+        changeMoney:function (product,way) {
+            if(way>0){
+                product.productQuentity++;
+            }else {
+                product.productQuentity--;
+                if (product.productQuentity<1){
+                    product.productQuentity =1;
+                }
+            }
         }
     }
 });
 
 //全局的过滤器
 Vue.filter('money',function (value,type) {
-  return "$" +value.toFixed(2)+'元'
+  return "$" +value.toFixed(2)+'元';
 });
 
 
