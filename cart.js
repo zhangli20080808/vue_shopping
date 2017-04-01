@@ -4,7 +4,9 @@ new Vue({
         //使用resource来调用我们的方法
         totalMoney:0,
         productList:[],
-        selectAll:false
+        selectAll:false,
+        delFlag:false,
+        currentProduct:''
     },
     //过滤器
     filters: {
@@ -67,6 +69,15 @@ new Vue({
                     _this.totalMoney += item.productPrice*item.productQuentity;
                 }
             })
+        },
+        delForm:function (item) {
+            this.delFlag = true;
+            this.currentProduct = item;
+        },
+        delProduct:function () {
+           var index =  this.productList.indexOf(this.currentProduct);
+           this.productList.splice(index,1)
+            this.delFlag = false;
         }
 
     }
