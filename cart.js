@@ -23,7 +23,7 @@ new Vue({
         cartView: function () {
             this.$http.get("data/cartData.json",{"id":123}).then(resp=> {
                 this.productList = resp.body.result.list;
-                this.totalMoney = resp.body.totalMoney;
+                // this.totalMoney = resp.body.result.totalMoney;
             })
         },
         changeMoney:function (product,way) {
@@ -35,6 +35,7 @@ new Vue({
                     product.productQuentity =1;
                 }
             }
+            this.calcTotalPrice();
         },
         selectProduct:function (item) {
         //    我们这里没有checked 这个字段 所以我们要使用set 去设置
@@ -44,6 +45,7 @@ new Vue({
             }else {
                 item.checked =!item.checked
             }
+            this.calcTotalPrice();
         },
         checkAll:function (flag) {
             this.selectAll= flag;
@@ -54,6 +56,15 @@ new Vue({
                     // this.$set(item,'checked',true)
                 }else {
                     item.checked =_this.selectAll;
+                }
+            })
+        },
+        calcTotalPrice:function () {
+            var _this = this;
+            this.totalMoney = 0;
+            this.productList.forEach(function (item,index) {
+                if(item.checked){
+                    _this.totalMoney += item.productPrice*item.productQuentity;
                 }
             })
         }
